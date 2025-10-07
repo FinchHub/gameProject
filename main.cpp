@@ -3,7 +3,8 @@
 #include <vector>
 #include <limits>
 
-// Board will be 16x16 with 4x4 center square, random-gen walls?
+// board gens but remember to add 2x2 hash in center inaccessible to players.
+// build obstacles, place players, and change gamestate?
 void makeBoard(char board[16][16]){
     const int BOARD_LENGTH = 16;
     const int BOARD_SIZE = BOARD_LENGTH * BOARD_LENGTH;
@@ -27,7 +28,14 @@ void play(char board[16][16]){
 
 }
 
-void gameStatus(){ }
+void gameStatus(){
+    enum GameState {
+        ONGOING,
+        PLAYER1_WINS,
+        PLAYER2_WINS,
+        DRAW,
+    };
+}
 
 
 
