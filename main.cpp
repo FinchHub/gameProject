@@ -21,8 +21,7 @@ void gameStatus(){
 
 
 int main() {
-    std::vector<std::vector<char>> board;
-    makeBoard(board);
+    std::vector<std::vector<char>> board = makeBoard();
 
     int menuOption;
 

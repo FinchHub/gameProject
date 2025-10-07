@@ -1,5 +1,5 @@
 #pragma once
 #include <vector>
 
-void makeBoard(std::vector<std::vector<char>>& board);
+std::vector<std::vector<char>> makeBoard();
 void printBoard(std::vector<std::vector<char>>& board);
