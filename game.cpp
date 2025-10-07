@@ -9,9 +9,10 @@ enum GameStatus {
     DRAW,
 };
 
-void placePlayers() {
+std::vector<std::vector<char>> placePlayers() {
+    std::vector<std::vector<char>> board; 
 
-
+    //Place an X and O on the board where the grid is equal to '.' Ignore "#" and "C"
 }
 
 void startGame() {
