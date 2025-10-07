@@ -4,7 +4,6 @@
 #include "board.hpp"
 #include "game.hpp"
 
-
 int main() {
     std::vector<std::vector<char>> board = makeBoard();
 

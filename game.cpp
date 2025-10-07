@@ -2,12 +2,22 @@
 #include <vector>
 #include <random>
 
+class Player{
+public:
+    char icon;
+    int row, col;
+    int score = 0;
+};
+
 enum GameStatus {
     ONGOING,
     P1_WINS,
     P2_WINS,
     DRAW,
 };
+
+Player player1{'X', 0, 0, 0};
+Player player2{'O', 0, 0, 0,};
 
 std::vector<std::vector<char>> placePlayers(std::vector<std::vector<char>> board) {
 
@@ -38,15 +48,18 @@ std::vector<std::vector<char>> placePlayers(std::vector<std::vector<char>> board
     return board;
 }
 
-void startGame() {
+std::vector<std::vector<char>> movePlayer(std::vector<std::vector<char>> board) {
+
+
+}
+
+void playGame() {
 
 }
 
 
 
 //To-do:
-//
-//1. FINISHED
 //2. Movement for direction.
 //3. Chip collection
 //4. Full sliding in all directions
