@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <limits>
+#include "board.hpp"
+#include "game.hpp"
 
 // board gens but remember to add 2x2 hash in center inaccessible to players.
 // build obstacles, place players, and change gamestate?
