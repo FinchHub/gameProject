@@ -1,10 +1,16 @@
 #include <iostream>
 #include <vector>
 
-// board gens but remember to add 2x2 hash in center inaccessible to players.
 // build obstacles, place players, and change gamestate?
 std::vector<std::vector<char>> makeBoard(){
-    return std::vector<std::vector<char>>(16, std::vector<char>(16, '.'));   
+    std::vector<std::vector<char>> board(16, std::vector<char>(16, '.'));   
+
+    board[7][7] = '#';
+    board[7][8] = '#';
+    board[8][7] = '#';
+    board[8][8] = '#';
+
+    return board;
 }
 
 void printBoard(std::vector<std::vector<char>>& board){
@@ -15,4 +21,5 @@ void printBoard(std::vector<std::vector<char>>& board){
         std::cout << "\n";
     }
 }
+
 
