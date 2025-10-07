@@ -5,28 +5,7 @@
 #include "board.hpp"
 #include "game.hpp"
 
-// board gens but remember to add 2x2 hash in center inaccessible to players.
-// build obstacles, place players, and change gamestate?
-void makeBoard(char board[16][16]){
-    const int BOARD_LENGTH = 16;
-    const int BOARD_SIZE = BOARD_LENGTH * BOARD_LENGTH;
-    
-    for (int row = 0; row < BOARD_LENGTH; row++){
-        for (int col = 0; col < BOARD_LENGTH; col++){
-            board[row][col] = '.';
-        }
-    }
-}
-
-void printBoard(char board[16][16]){
-   for (int row = 0; row<16; row++) {
-        for (int col = 0; col < 16; col++){
-            std::cout << board[row][col] << " ";
-        }
-        std::cout << "\n";
-    }
-}
-void play(char board[16][16]){
+void play(){
 
 }
 
@@ -42,7 +21,9 @@ void gameStatus(){
 
 
 int main() {
-    char board[16][16];
+    std::vector<std::vector<char>> board;
+    makeBoard(board);
+
     int menuOption;
 
     while (true) {
@@ -59,7 +40,7 @@ int main() {
             }
 
         if (menuOption == 1) {
-            play(board);
+            //play
             break;
         } else if (menuOption == 2) {
             return 0;
@@ -67,7 +48,6 @@ int main() {
             std::cout << "INVALID MENU OPTION. Enter '1' or '2'.\n";
         }
     }
-
-    makeBoard(board);
     printBoard(board);
 }
+
