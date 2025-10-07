@@ -1,4 +1,3 @@
-#include <ios>
 #include <iostream>
 #include <vector>
 #include <limits>
@@ -32,7 +31,9 @@ int main() {
             }
 
         if (menuOption == 1) {
-            //play
+            board = placePlayers(board);
+            printBoard(board);
+            //call play();
             break;
         } else if (menuOption == 2) {
             return 0;
