@@ -1,5 +1,7 @@
+#include <ios>
 #include <iostream>
 #include <vector>
+#include <limits>
 
 // Board will be 16x16 with 4x4 center square, random-gen walls?
 void makeBoard(char board[16][16]){
@@ -21,7 +23,7 @@ void printBoard(char board[16][16]){
         std::cout << "\n";
     }
 }
-void play(){
+void play(char board[16][16]){
 
 }
 
@@ -31,6 +33,30 @@ void gameStatus(){ }
 
 int main() {
     char board[16][16];
+    int menuOption;
+
+    while (true) {
+        std::cout << "===== RICOCHET ROBOTS =====\n"
+                  << "1. Play\n"
+                  << "2. Exit\n"
+                  << "Make a choice (1-2): ";
+
+        if (!(std::cin >> menuOption)) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "INVALID MENU OPTION. Enter '1' or '2'.\n";
+            continue;
+            }
+
+        if (menuOption == 1) {
+            play(board);
+            break;
+        } else if (menuOption == 2) {
+            return 0;
+        } else {
+            std::cout << "INVALID MENU OPTION. Enter '1' or '2'.\n";
+        }
+    }
 
     makeBoard(board);
     printBoard(board);
