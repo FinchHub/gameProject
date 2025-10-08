@@ -69,6 +69,9 @@ std::vector<std::vector<char>> movePlayer(std::vector<std::vector<char>>& board)
     if (moveDirection == 'W' || moveDirection == 'w') {
         while (player1.row > 0 && (board[player1.row - 1][player1.col] != '#') && (board[player1.row - 1][player1.col] != 'O'))  {
             board[player1.row][player1.col] = '.';
+            if (board[player1.row - 1][player1.col] == 'C') {
+                player1.score++;
+            }
             board[player1.row - 1][player1.col] = 'X';
             player1.row -= 1;
         } 
@@ -76,6 +79,9 @@ std::vector<std::vector<char>> movePlayer(std::vector<std::vector<char>>& board)
     } else if (moveDirection == 'A' || moveDirection == 'a') {
         while (player1.col > 0 && (board[player1.row][player1.col - 1] != '#') && (board[player1.row][player1.col - 1] != 'O'))  {
             board[player1.row][player1.col] = '.';
+            if (board[player1.row][player1.col - 1] == 'C') {
+                player1.score++;
+            }
             board[player1.row][player1.col - 1] = 'X';
             player1.col -= 1;
         } 
@@ -83,6 +89,9 @@ std::vector<std::vector<char>> movePlayer(std::vector<std::vector<char>>& board)
     } else if (moveDirection == 'S' || moveDirection == 's') {
         while (player1.row < 7 && (board[player1.row + 1][player1.col] != '#') && (board[player1.row + 1][player1.col] != 'O'))  {
             board[player1.row][player1.col] = '.';
+            if (board[player1.row + 1][player1.col] == 'C') {
+                player1.score++;
+            }
             board[player1.row + 1][player1.col] = 'X';
             player1.row += 1;
         } 
@@ -91,6 +100,9 @@ std::vector<std::vector<char>> movePlayer(std::vector<std::vector<char>>& board)
     } else if (moveDirection == 'D' || moveDirection == 'd') {
         while (player1.col < 7 && (board[player1.row][player1.col + 1] != '#') && (board[player1.row][player1.col + 1] != 'O'))  {
             board[player1.row][player1.col] = '.';
+            if (board[player1.row][player1.col + 1] == 'C') {
+                player1.score++;
+            }
             board[player1.row][player1.col + 1] = 'X';
             player1.col += 1;
         } 
@@ -106,6 +118,7 @@ void playGame(std::vector<std::vector<char>> board) {
     
     while (true) {
         printBoard(board);
+        std::cout << "(X) Player 1: " << player1.score << "     (O) Player 2: " << player2.score << std::endl;
         movePlayer(board);
     }
 }
