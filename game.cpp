@@ -1,6 +1,8 @@
 #include <iostream>
+#include <limits>
 #include <vector>
 #include <random>
+#include "board.hpp"
 
 class Player{
 public:
@@ -11,6 +13,8 @@ public:
 
 enum GameStatus {
     ONGOING,
+    P1_TURN,
+    P2_TURN,
     P1_WINS,
     P2_WINS,
     DRAW,
@@ -29,32 +33,81 @@ std::vector<std::vector<char>> placePlayers(std::vector<std::vector<char>> board
 
     do {
         row = dist(engine);
-        std::cout << "row " << row << std::endl;
         col = dist(engine);
-        std::cout << " col " << col << std::endl;
     } while (board[row][col] != '.');
     board[row][col] = 'X';
+    player1.row = row;
+    player1.col = col;
     
     do {
         row = dist(engine);
-        std::cout << "row " << row << std::endl;
-
         col = dist(engine);
-        std::cout << " col " << col << std::endl;
-
     } while (board[row][col] != '.');
     board[row][col] = 'O';
+    player2.row = row;
+    player2.col = col;
 
     return board;
 }
 
-std::vector<std::vector<char>> movePlayer(std::vector<std::vector<char>> board) {
+std::vector<std::vector<char>> movePlayer(std::vector<std::vector<char>>& board) {
+   
+    int row, col;
+    char moveDirection;
 
+    std::cout << "(X) PLAYER 1: Select a direction (W/A/S/D): ";
+    if (!(std::cin >> moveDirection)) {
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid direction. Select a valid direction.\n";
+            std::cout << "(X) PLAYER 1: Select a direction (W/A/S/D): ";
+        }
+    }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    if (moveDirection == 'W' || moveDirection == 'w') {
+        while (player1.row > 0 && (board[player1.row - 1][player1.col] != '#') && (board[player1.row - 1][player1.col] != 'O'))  {
+            board[player1.row][player1.col] = '.';
+            board[player1.row - 1][player1.col] = 'X';
+            player1.row -= 1;
+        } 
+        return board;
+    } else if (moveDirection == 'A' || moveDirection == 'a') {
+        while (player1.col > 0 && (board[player1.row][player1.col - 1] != '#') && (board[player1.row][player1.col - 1] != 'O'))  {
+            board[player1.row][player1.col] = '.';
+            board[player1.row][player1.col - 1] = 'X';
+            player1.col -= 1;
+        } 
+        return board;
+    } else if (moveDirection == 'S' || moveDirection == 's') {
+        while (player1.row < 7 && (board[player1.row + 1][player1.col] != '#') && (board[player1.row + 1][player1.col] != 'O'))  {
+            board[player1.row][player1.col] = '.';
+            board[player1.row + 1][player1.col] = 'X';
+            player1.row += 1;
+        } 
+        return board;
+
+    } else if (moveDirection == 'D' || moveDirection == 'd') {
+        while (player1.col < 7 && (board[player1.row][player1.col + 1] != '#') && (board[player1.row][player1.col + 1] != 'O'))  {
+            board[player1.row][player1.col] = '.';
+            board[player1.row][player1.col + 1] = 'X';
+            player1.col += 1;
+        } 
+        return board;
+    } else {
+        std::cout << "Invalid direction!\n";
+        return board;
+    }
 
 }
 
-void playGame() {
-
+void playGame(std::vector<std::vector<char>> board) {
+    
+    while (true) {
+        printBoard(board);
+        movePlayer(board);
+    }
 }
 
 

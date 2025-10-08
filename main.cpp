@@ -31,8 +31,7 @@ int main() {
 
         if (menuOption == 1) {
             board = placePlayers(board);
-            printBoard(board);
-            //call play();
+            playGame(board);
             break;
         } else if (menuOption == 2) {
             return 0;
