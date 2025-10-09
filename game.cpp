@@ -4,12 +4,16 @@
 #include <random>
 #include "board.hpp"
 
+// Not entirely sure if these being globals are a bad practice.
 class Player{
 public:
     char icon;
     int row, col;
     int score = 0;
 };
+
+Player player1{'X', 0, 0, 0};
+Player player2{'O', 0, 0, 0,};
 
 enum GameStatus {
     ONGOING,
@@ -114,9 +118,6 @@ std::vector<std::vector<char>> movePlayer(std::vector<std::vector<char>>& board,
 }
 
 void playGame(std::vector<std::vector<char>> board) {
-    Player player1{'X', 0, 0, 0};
-    Player player2{'O', 0, 0, 0,};
-
     board = placePlayers(board, player1, player2);
     GameStatus condition = ONGOING;
     GameStatus playerTurn = P1_TURN;
@@ -138,13 +139,19 @@ void playGame(std::vector<std::vector<char>> board) {
         if (player1.score + player2.score == 4 && player1.score > player2.score) {
             condition = P1_WINS;
             std::cout << "\nPlayer 1 wins!\n";
+            player1.score = 0;
+            player2.score = 0;
             break;
         } else if (player1.score + player2.score == 4 && player2.score > player1.score) {
             condition = P2_WINS;
             std::cout << "\nPlayer 2 wins!\n";
+            player1.score = 0;
+            player2.score = 0;
             break;
         } else if (player1.score == 2 && player2.score == 2) {
             std::cout << "\nDraw!\n";
+            player1.score = 0;
+            player2.score = 0;
             break;
         }
     } 
