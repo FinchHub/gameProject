@@ -32,13 +32,21 @@ int main() {
         if (menuOption == 1) {
             playGame(board);
             
-            char playAgain;
-            std::cout << "\nPlay again? (Y/N): ";
+            while (true) {
+                char playAgain;
+                std::cout << "\nPlay again? (Y/N): ";
 
-        while (!(std::cin >> playAgain)) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "INVALID MENU OPTION. Enter '1' or '2'.\n";
+                while (!(std::cin >> playAgain)) {
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    std::cout << "INVALID MENU OPTION. Enter 'Y' or 'N'.\n";
+                }
+
+                if (playAgain == 'Y' || playAgain == 'y') {
+                    playGame(board);
+                } else if (playAgain == 'N' || playAgain == 'n') {
+                    return 0;
+                }
             }
 
         } else if (menuOption == 2) {
