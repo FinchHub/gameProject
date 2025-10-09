@@ -1,3 +1,9 @@
+//AI was used exclusively for minimal debugging.
+//Consequently, I know there are far better ways to have executed
+//some functions like the movement loop, but I am going to leave
+//it as-is for now because this took several days of work and I
+//want to continue working on it at a later point.
+
 #include <iostream>
 #include <vector>
 #include <limits>
