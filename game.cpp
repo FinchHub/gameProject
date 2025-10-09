@@ -63,6 +63,8 @@ std::vector<std::vector<char>> movePlayer(std::vector<std::vector<char>>& board,
     }
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+    //I'm 100% sure there's a better way to refactor this but I've spent hours on it.
+    //It works, so I'll come back to it eventually.
     if (moveDirection == 'W' || moveDirection == 'w') {
         while (current.row > 0 && (board[current.row - 1][current.col] != '#') && (board[current.row - 1][current.col] != opponent.icon))  {
             board[current.row][current.col] = '.';
@@ -116,22 +118,31 @@ void playGame(std::vector<std::vector<char>> board) {
     Player player2{'O', 0, 0, 0,};
 
     board = placePlayers(board, player1, player2);
-    GameStatus status = P1_TURN;
+    GameStatus condition = ONGOING;
+    GameStatus playerTurn = P1_TURN;
 
-    while (status == P1_TURN || status == P2_TURN) {
-        printBoard(board);
-        std::cout << "(X) Player 1: " << player1.score << "     (O) Player 2: " << player2.score << std::endl;
 
-        if (status == P1_TURN) {
-            board = movePlayer(board, player1, player2, "(X) PLAYER 1");
-            status = P2_TURN;
-        } else if (status == P2_TURN) {
-            board = movePlayer(board, player2, player1, "(O) PLAYER 2");
-            status = P1_TURN;
+    while (condition == ONGOING) {
+            printBoard(board);
+            std::cout << "(X) Player 1: " << player1.score << "     (O) Player 2: " << player2.score << std::endl;
+
+            if (playerTurn == P1_TURN) {
+                board = movePlayer(board, player1, player2, "(X) PLAYER 1");
+                playerTurn = P2_TURN;
+            } else if (playerTurn == P2_TURN) {
+                board = movePlayer(board, player2, player1, "(O) PLAYER 2");
+                playerTurn = P1_TURN;
+            }
+
+            if (player1.score + player2.score == 4 && player1.score > player2.score) {
+                condition = P1_WINS;
+                std::cout << "\nPlayer 1 wins!\n";
+            } else if (player1.score + player2.score == 4 && player1.score > player2.score) {
+                condition = P2_WINS;
+                std::cout << "\nPlayer 2 wins!\n";
+            } else if (player1.score == 2 && player2.score == 2) {
+                std::cout << "\nDraw!\n";
         }
-
-        //Add a win condition here? Checks if any chips remain, maybe set a counter
-
-    }
+    } 
 }
 
