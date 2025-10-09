@@ -31,7 +31,16 @@ int main() {
 
         if (menuOption == 1) {
             playGame(board);
-            break;
+            
+            char playAgain;
+            std::cout << "\nPlay again? (Y/N): ";
+
+        while (!(std::cin >> playAgain)) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "INVALID MENU OPTION. Enter '1' or '2'.\n";
+            }
+
         } else if (menuOption == 2) {
             return 0;
         } else {

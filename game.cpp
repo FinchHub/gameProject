@@ -123,25 +123,29 @@ void playGame(std::vector<std::vector<char>> board) {
 
 
     while (condition == ONGOING) {
-            printBoard(board);
-            std::cout << "(X) Player 1: " << player1.score << "     (O) Player 2: " << player2.score << std::endl;
+        printBoard(board);
+        std::cout << "(X) Player 1: " << player1.score << "     (O) Player 2: " << player2.score
+                  << "\n===================================\n";
+      
+        if (playerTurn == P1_TURN) {
+            board = movePlayer(board, player1, player2, "(X) PLAYER 1");
+            playerTurn = P2_TURN;
+        } else if (playerTurn == P2_TURN) {
+            board = movePlayer(board, player2, player1, "(O) PLAYER 2");
+            playerTurn = P1_TURN;
+        }
 
-            if (playerTurn == P1_TURN) {
-                board = movePlayer(board, player1, player2, "(X) PLAYER 1");
-                playerTurn = P2_TURN;
-            } else if (playerTurn == P2_TURN) {
-                board = movePlayer(board, player2, player1, "(O) PLAYER 2");
-                playerTurn = P1_TURN;
-            }
-
-            if (player1.score + player2.score == 4 && player1.score > player2.score) {
-                condition = P1_WINS;
-                std::cout << "\nPlayer 1 wins!\n";
-            } else if (player1.score + player2.score == 4 && player1.score > player2.score) {
-                condition = P2_WINS;
-                std::cout << "\nPlayer 2 wins!\n";
-            } else if (player1.score == 2 && player2.score == 2) {
-                std::cout << "\nDraw!\n";
+        if (player1.score + player2.score == 4 && player1.score > player2.score) {
+            condition = P1_WINS;
+            std::cout << "\nPlayer 1 wins!\n";
+            break;
+        } else if (player1.score + player2.score == 4 && player2.score > player1.score) {
+            condition = P2_WINS;
+            std::cout << "\nPlayer 2 wins!\n";
+            break;
+        } else if (player1.score == 2 && player2.score == 2) {
+            std::cout << "\nDraw!\n";
+            break;
         }
     } 
 }
