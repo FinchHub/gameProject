@@ -115,11 +115,22 @@ std::vector<std::vector<char>> movePlayer(std::vector<std::vector<char>>& board)
 }
 
 void playGame(std::vector<std::vector<char>> board) {
-    
-    while (true) {
+   GameStatus status = P1_TURN;
+
+    while (status == P1_TURN || status == P2_TURN) {
         printBoard(board);
         std::cout << "(X) Player 1: " << player1.score << "     (O) Player 2: " << player2.score << std::endl;
-        movePlayer(board);
+
+        if (status == P1_TURN) {
+            //set the board equal to the result of movePlayer?
+            status = P2_TURN;
+        } else if (status == P2_TURN) {
+            // same thing
+            status = P1_TURN;
+        }
+
+        //Add a win condition here? Checks if any chips remain, maybe set a counter
+
     }
 }
 
