@@ -30,7 +30,6 @@ int main() {
             }
 
         if (menuOption == 1) {
-            board = placePlayers(board);
             playGame(board);
             break;
         } else if (menuOption == 2) {
