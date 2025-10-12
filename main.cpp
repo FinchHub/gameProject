@@ -15,6 +15,12 @@ int main() {
 
     int menuOption;
 
+    std::cout << "==== OBJECTIVE ====\n"
+              << "This is a modified, simplified version of\n"
+              << "Ricochet Robots where each player must try\n"
+              << "To collect more chips (C) than the other\n"
+              << "Player. The player with more chips wins.\n\n";
+
     while (true) {
         std::cout << "===== RICOCHET ROBOTS =====\n"
                   << "1. Play\n"
